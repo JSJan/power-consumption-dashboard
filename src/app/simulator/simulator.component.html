@@ -1,0 +1,17 @@
+<button (click)="stop()">Stop</button>
+
+<div style="width: 80%;height: 700px; overflow-y: scroll">
+    <div *ngFor="let meter of metersList">
+        <br />
+        <div>
+            {{meter.meterId}} - {{meter.connectionType}}
+            <button (click)="simulateVoltageVariation(meter.meterId)" [class.highlight] = "meter.meterId === meterIdOfVoltageVaration">Voltage variation</button>
+            <button (click)="simulateOutage(meter.meterId)" [class.highlight] = "meter.meterId === meterIdOfOutage">Outage</button>
+            <button *ngIf="meter.connectionType === 'publicLighting'" (click)="simulatePublicLighting(meter.meterId)" [class.highlight] = "meter.meterId === meterIdOfPublicLighting">Invalid lighting</button>
+            <button *ngIf="meter.connectionType === 'publicLighting'" (click)="simulateNoPublicLighting(meter.meterId)" [class.highlight] = "meter.meterId === meterIdOfNoPublicLighting">No lighting</button>
+        </div>
+    </div>
+    
+</div>
+
+<app-dashboard></app-dashboard>
